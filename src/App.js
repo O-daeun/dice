@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Button from './Button';
+import Dice from './Dice';
+
+function random(n) {
+  return Math.ceil(Math.random() * n);
+}
 
 function App() {
+
+  const [num, setNum] = useState(1);
+
+  const handleRollClick = () => {
+    const nextNum = random(6);
+    setNum(nextNum);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Dice num={num} />
+      <Button onClick={handleRollClick}>던지기</Button>
+      <Button>처음부터</Button>
     </div>
   );
 }
