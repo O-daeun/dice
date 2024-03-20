@@ -9,11 +9,14 @@ function random(n) {
 function App() {
   const [num, setNum] = useState(1);
   const [sum, setSum] = useState(0);
+  const [gameHistory, setGameHistory] = useState([]);
 
   const handleRollClick = () => {
     const nextNum = random(6);
     setNum(nextNum);
     setSum((prev) => prev + nextNum);
+    setGameHistory((prev) => [...prev, nextNum]);
+    console.log(gameHistory)
   };
 
   const handleClearClick = () => {
@@ -29,6 +32,7 @@ function App() {
         <h2>나</h2>
         <Dice num={num} />
         <p>총점: {sum}점</p>
+        <p>기록: {gameHistory.join(', ')}</p>
       </div>
     </div>
   );
