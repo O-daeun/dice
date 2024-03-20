@@ -15,11 +15,15 @@ function App() {
     setNum(nextNum);
   };
 
+  const handleClearClick = () => {
+    setNum(1);
+  }
+
   return (
     <div>
       <Dice num={num} />
       <Button onClick={handleRollClick}>던지기</Button>
-      <Button>처음부터</Button>
+      <Button onClick={handleClearClick}>처음부터</Button>
     </div>
   );
 }
