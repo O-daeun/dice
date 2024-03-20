@@ -8,31 +8,19 @@ function random(n) {
 }
 
 export default function App() {
-  const [num, setNum] = useState(1);
-  const [sum, setSum] = useState(0);
-  const [gameHistory, setGameHistory] = useState([]);
-  const [otherNum, setOtherNum] = useState(1);
-  const [otherSum, setOtherSum] = useState(0);
-  const [otherGameHistory, setOtherGameHistory] = useState([]);
+  const [myHistory, setMyHistory] = useState([]);
+  const [otherHistory, setOtherHistory] = useState([]);
 
   const handleRollClick = () => {
     const nextNum = random(6);
     const nextOtherNum = random(6);
-    setNum(nextNum);
-    setSum((prev) => prev + nextNum);
-    setGameHistory((prev) => [...prev, nextNum]);
-    setOtherNum(nextOtherNum);
-    setOtherSum((prev) => prev + nextOtherNum);
-    setOtherGameHistory((prev) => [...prev, nextOtherNum]);
+    setMyHistory((prev) => [...prev, nextNum]);
+    setOtherHistory((prev) => [...prev, nextOtherNum]);
   };
 
   const handleClearClick = () => {
-    setNum(1);
-    setSum(0);
-    setGameHistory([]);
-    setOtherNum(1);
-    setOtherSum(0);
-    setOtherGameHistory([]);
+    setMyHistory([]);
+    setOtherHistory([]);
   };
   return (
     <div>
@@ -44,16 +32,12 @@ export default function App() {
         <Board
           name='나'
           color='blue'
-          num={num}
-          sum={sum}
-          gameHistory={gameHistory}
+          history={myHistory}
         />
         <Board
           name='상대'
           color='red'
-          num={otherNum}
-          sum={otherSum}
-          gameHistory={otherGameHistory}
+          history={otherHistory}
         />
       </div>
     </div>
